@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="150px" height="150px" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+    <title>Legal Scales (Dark Mode)</title>
+    <g fill="none" stroke="#5B9DD9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Base -->
+        <rect x="65" y="127" width="20" height="8" rx="2" ry="2" fill="#343434"/>
+        
+        <!-- Stand -->
+        <line x1="75" y1="127" x2="75" y2="40" stroke="#5B9DD9"/>
+        
+        <!-- Crossbar -->
+        <line x1="35" y1="40" x2="115" y2="40" stroke="#5B9DD9"/>
+        
+        <!-- Left side chain -->
+        <path d="M35,40 C35,40 40,55 35,70" stroke="#5B9DD9"/>
+        
+        <!-- Right side chain -->
+        <path d="M115,40 C115,40 110,55 115,70" stroke="#5B9DD9"/>
+        
+        <!-- Left side plate -->
+        <ellipse cx="35" cy="75" rx="20" ry="5" stroke="#5B9DD9" fill="#2A4D6E" fill-opacity="0.7"/>
+        
+        <!-- Right side plate -->
+        <ellipse cx="115" cy="75" rx="20" ry="5" stroke="#5B9DD9" fill="#2A4D6E" fill-opacity="0.7"/>
+    </g>
+    
+    <!-- Small decorative elements -->
+    <g fill="#5B9DD9">
+        <circle cx="75" cy="40" r="3"/>
+        <circle cx="35" cy="40" r="3"/>
+        <circle cx="115" cy="40" r="3"/>
+    </g>
+    
+    <!-- Lady Justice head silhouette at the top -->
+    <g fill="#4A8CC8">
+        <path d="M75,15 C71,15 68,18 68,22 C68,26 71,30 75,30 C79,30 82,26 82,22 C82,18 79,15 75,15 Z"/>
+        <rect x="72" y="30" width="6" height="10" rx="1"/>
+    </g>
+</svg> 

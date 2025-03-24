@@ -1,0 +1,695 @@
+/**
+ * Legal Advisor AI
+ * Enhanced animations and interactions for the UI
+ */
+
+// Main function to initialize all animations and interactions
+function initializeAnimations() {
+    console.log("Initializing Legal Advisor UI animations");
+    
+    // Handle dark mode detection and toggle
+    handleDarkMode();
+    
+    // Add smooth scrolling to the chat container
+    enhanceChatContainer();
+    
+    // Add typing animation to bot messages
+    enhanceChatMessages();
+    
+    // Add animation to legal terms
+    highlightLegalTerms();
+    
+    // Enhance the UI elements with subtle interactions
+    enhanceUIElements();
+    
+    // Add scale animation to logo
+    animateScales();
+    
+    // Improve focus states and accessibility
+    improveAccessibility();
+    
+    // Add New Chat button and chat history management
+    addNewChatButton();
+    
+    // Initialize chat history in sidebar
+    initializeChatHistory();
+}
+
+// Function to handle dark mode
+function handleDarkMode() {
+    // Check for system dark mode preference
+    const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    // Apply the appropriate class to the body
+    if (prefersDarkMode) {
+        document.body.classList.add('dark-mode');
+    }
+    
+    // Listen for changes in system preference
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+        if (event.matches) {
+            document.body.classList.add('dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+        }
+    });
+    
+    // Create a toggle button for testing dark mode
+    const darkModeToggle = document.createElement('button');
+    darkModeToggle.id = 'darkModeToggle';
+    darkModeToggle.innerText = prefersDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode';
+    darkModeToggle.style.position = 'fixed';
+    darkModeToggle.style.bottom = '20px';
+    darkModeToggle.style.right = '20px';
+    darkModeToggle.style.zIndex = '1000';
+    darkModeToggle.style.padding = '8px 12px';
+    darkModeToggle.style.borderRadius = '8px';
+    darkModeToggle.style.border = 'none';
+    darkModeToggle.style.backgroundColor = prefersDarkMode ? '#BBDEFB' : '#2A4D6E';
+    darkModeToggle.style.color = prefersDarkMode ? '#2A4D6E' : '#FFFFFF';
+    darkModeToggle.style.cursor = 'pointer';
+    darkModeToggle.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+    darkModeToggle.style.fontSize = '14px';
+    darkModeToggle.style.fontWeight = '500';
+    darkModeToggle.style.opacity = '0.85';
+    darkModeToggle.style.transition = 'all 0.3s ease';
+    
+    // Add mouse events for better UX
+    darkModeToggle.addEventListener('mouseover', () => {
+        darkModeToggle.style.opacity = '1';
+        darkModeToggle.style.transform = 'translateY(-2px)';
+        darkModeToggle.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.15)';
+    });
+    
+    darkModeToggle.addEventListener('mouseout', () => {
+        darkModeToggle.style.opacity = '0.85';
+        darkModeToggle.style.transform = 'translateY(0)';
+        darkModeToggle.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+    });
+    
+    // Toggle dark mode on click
+    darkModeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode-forced');
+        
+        const isDarkMode = document.body.classList.contains('dark-mode-forced');
+        darkModeToggle.innerText = isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode';
+        darkModeToggle.style.backgroundColor = isDarkMode ? '#BBDEFB' : '#2A4D6E';
+        darkModeToggle.style.color = isDarkMode ? '#2A4D6E' : '#FFFFFF';
+        
+        // Force reload of styles
+        const styleElements = document.querySelectorAll('style');
+        styleElements.forEach(style => {
+            const parent = style.parentNode;
+            parent.removeChild(style);
+            parent.appendChild(style);
+        });
+    });
+    
+    document.body.appendChild(darkModeToggle);
+}
+
+// Enhance chat container
+function enhanceChatContainer() {
+    const chatContainer = document.querySelector('.chat-container');
+    if (chatContainer) {
+        // Auto-scroll chat to bottom on new message
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+        
+        // Create a subtle scroll indicator when chat has overflow
+        const scrollIndicator = document.createElement('div');
+        scrollIndicator.className = 'scroll-indicator';
+        scrollIndicator.innerHTML = '<span>↓</span>';
+        scrollIndicator.style.position = 'absolute';
+        scrollIndicator.style.bottom = '10px';
+        scrollIndicator.style.right = '10px';
+        scrollIndicator.style.width = '30px';
+        scrollIndicator.style.height = '30px';
+        scrollIndicator.style.borderRadius = '50%';
+        scrollIndicator.style.backgroundColor = 'var(--accent-color)';
+        scrollIndicator.style.color = 'white';
+        scrollIndicator.style.display = 'flex';
+        scrollIndicator.style.justifyContent = 'center';
+        scrollIndicator.style.alignItems = 'center';
+        scrollIndicator.style.cursor = 'pointer';
+        scrollIndicator.style.opacity = '0';
+        scrollIndicator.style.transition = 'opacity 0.3s ease';
+        scrollIndicator.style.boxShadow = '0 2px 5px var(--shadow-color)';
+        
+        // Show indicator when not scrolled to bottom
+        chatContainer.addEventListener('scroll', () => {
+            const isScrolledToBottom = chatContainer.scrollHeight - chatContainer.clientHeight <= chatContainer.scrollTop + 30;
+            scrollIndicator.style.opacity = isScrolledToBottom ? '0' : '0.8';
+        });
+        
+        // Scroll to bottom on click
+        scrollIndicator.addEventListener('click', () => {
+            chatContainer.scrollTo({ top: chatContainer.scrollHeight, behavior: 'smooth' });
+        });
+        
+        chatContainer.style.position = 'relative';
+        chatContainer.appendChild(scrollIndicator);
+    }
+}
+
+// Typewriter effect for text elements
+function typewriter(element, text, speed = 30, delay = 0) {
+    if (!element) return;
+    
+    element.innerHTML = '';
+    element.style.minHeight = '1em';
+    
+    // Add a subtle cursor
+    const cursor = document.createElement('span');
+    cursor.className = 'cursor';
+    cursor.innerHTML = '|';
+    cursor.style.opacity = '0';
+    cursor.style.animation = 'blink 1s infinite';
+    element.appendChild(cursor);
+    
+    // Add CSS for cursor animation
+    const style = document.createElement('style');
+    style.innerHTML = `
+        @keyframes blink {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    setTimeout(() => {
+        let i = 0;
+        const timer = setInterval(() => {
+            if (i < text.length) {
+                cursor.insertAdjacentHTML('beforebegin', text.charAt(i));
+                i++;
+            } else {
+                clearInterval(timer);
+                cursor.style.display = 'none';
+            }
+        }, speed);
+    }, delay);
+}
+
+// Add balance animation to the scales image
+function animateScales() {
+    const scalesImgs = document.querySelectorAll('.scales-img');
+    scalesImgs.forEach(img => {
+        img.style.transformOrigin = 'center 30%';
+        img.style.animation = 'scaleBalance 3s ease-in-out infinite';
+    });
+}
+
+// Enhance chat messages with animations
+function enhanceChatMessages() {
+    const messages = document.querySelectorAll('.bot-message, .user-message');
+    
+    messages.forEach((message, index) => {
+        // Add fade in and translate effect
+        message.style.opacity = '0';
+        message.style.transform = 'translateY(10px)';
+        
+        setTimeout(() => {
+            message.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            message.style.opacity = '1';
+            message.style.transform = 'translateY(0)';
+        }, 100 * index); // Stagger delay based on message index
+    });
+    
+    // Apply more elaborate styling to the latest message
+    const latestMessage = messages[messages.length - 1];
+    if (latestMessage && latestMessage.classList.contains('bot-message')) {
+        latestMessage.style.boxShadow = '0 4px 15px var(--shadow-color)';
+        
+        // Return to normal shadow after animation
+        setTimeout(() => {
+            latestMessage.style.transition = 'box-shadow 0.5s ease';
+            latestMessage.style.boxShadow = '0 1px 2px var(--shadow-color)';
+        }, 1500);
+    }
+}
+
+// Highlight legal terms in text
+function highlightLegalTerms() {
+    const legalTerms = [
+        'tort', 'plaintiff', 'defendant', 'litigation', 'jurisdiction',
+        'statute', 'contract', 'liability', 'negligence', 'deposition',
+        'injunction', 'damages', 'brief', 'appeal', 'arbitration'
+    ];
+    
+    // Create a regular expression to match the terms
+    const regex = new RegExp(`\\b(${legalTerms.join('|')})\\b`, 'gi');
+    
+    // Function to wrap terms in span with class
+    function wrapTerms(node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+            const content = node.textContent;
+            const matches = content.match(regex);
+            
+            if (matches) {
+                const span = document.createElement('span');
+                const highlightedContent = content.replace(regex, '<span class="legal-term">$&</span>');
+                span.innerHTML = highlightedContent;
+                node.parentNode.replaceChild(span, node);
+            }
+        } else if (node.nodeType === Node.ELEMENT_NODE && 
+                  !['SCRIPT', 'STYLE', 'BUTTON', 'INPUT', 'TEXTAREA'].includes(node.nodeName)) {
+            // Create a copy of childNodes to avoid live collection issues during iteration
+            Array.from(node.childNodes).forEach(wrapTerms);
+        }
+    }
+    
+    try {
+        // Use TreeWalker to find all text nodes in chat messages
+        const botMessages = document.querySelectorAll('.bot-message');
+        botMessages.forEach(message => wrapTerms(message));
+    } catch (e) {
+        console.error('Error highlighting legal terms:', e);
+    }
+}
+
+// Enhance UI elements with subtle interactions
+function enhanceUIElements() {
+    // Add hover effects to the legal ribbon
+    const ribbon = document.querySelector('.legal-ribbon');
+    if (ribbon) {
+        ribbon.style.transition = 'all 0.3s ease';
+        ribbon.addEventListener('mouseover', () => {
+            ribbon.style.transform = 'translateY(-2px)';
+            ribbon.style.boxShadow = '0 6px 15px var(--shadow-color)';
+        });
+        
+        ribbon.addEventListener('mouseout', () => {
+            ribbon.style.transform = 'translateY(0)';
+            ribbon.style.boxShadow = '0 3px 10px var(--shadow-color)';
+        });
+    }
+    
+    // Improve button hover states
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+        button.addEventListener('mouseover', () => {
+            button.style.transform = 'translateY(-1px)';
+            button.style.boxShadow = '0 4px 10px var(--shadow-color)';
+        });
+        
+        button.addEventListener('mouseout', () => {
+            button.style.transform = 'translateY(0)';
+            button.style.boxShadow = '0 2px 5px var(--shadow-color)';
+        });
+    });
+    
+    // Add subtle hover effect to chat messages
+    const messages = document.querySelectorAll('.bot-message, .user-message');
+    messages.forEach(message => {
+        message.addEventListener('mouseover', () => {
+            message.style.boxShadow = '0 3px 10px var(--shadow-color)';
+        });
+        
+        message.addEventListener('mouseout', () => {
+            message.style.boxShadow = '0 1px 2px var(--shadow-color)';
+        });
+    });
+}
+
+// Improve focus states and accessibility
+function improveAccessibility() {
+    // Add better focus styles to interactive elements
+    const focusableElements = document.querySelectorAll('a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])');
+    
+    focusableElements.forEach(element => {
+        element.addEventListener('focus', () => {
+            element.style.outline = '2px solid var(--accent-color)';
+            element.style.outlineOffset = '2px';
+        });
+        
+        element.addEventListener('blur', () => {
+            element.style.outline = 'none';
+        });
+    });
+    
+    // Make sure tooltips are accessible with keyboard
+    const tooltips = document.querySelectorAll('.tooltip');
+    tooltips.forEach(tooltip => {
+        tooltip.tabIndex = 0;
+        
+        tooltip.addEventListener('focus', () => {
+            const tooltipText = tooltip.querySelector('.tooltip-text');
+            if (tooltipText) {
+                tooltipText.style.visibility = 'visible';
+                tooltipText.style.opacity = '1';
+                tooltipText.style.transform = 'translateX(-50%) translateY(0)';
+            }
+        });
+        
+        tooltip.addEventListener('blur', () => {
+            const tooltipText = tooltip.querySelector('.tooltip-text');
+            if (tooltipText) {
+                tooltipText.style.visibility = 'hidden';
+                tooltipText.style.opacity = '0';
+                tooltipText.style.transform = 'translateX(-50%) translateY(10px)';
+            }
+        });
+    });
+}
+
+// Add New Chat button functionality
+function addNewChatButton() {
+    // If button already exists, don't create another one
+    if (document.querySelector('.new-chat-button')) return;
+    
+    // Create the New Chat button
+    const newChatButton = document.createElement('button');
+    newChatButton.className = 'new-chat-button';
+    newChatButton.innerHTML = '<i>+</i> New Chat';
+    
+    // Add click event to start a new chat
+    newChatButton.addEventListener('click', () => {
+        // Save current chat to history if it has content
+        saveChatToHistory();
+        
+        // Clear the chat container
+        clearChatContainer();
+        
+        // Create a temporary message to show new chat is started
+        displayNewChatMessage();
+        
+        // Refresh sidebar if needed
+        updateChatHistorySidebar();
+    });
+    
+    // Add to document
+    document.body.appendChild(newChatButton);
+}
+
+// Clear the chat container
+function clearChatContainer() {
+    const chatContainer = document.querySelector('.chat-container');
+    if (chatContainer) {
+        // Store original HTML structure (keep the container but remove messages)
+        const originalHTML = chatContainer.innerHTML;
+        chatContainer.innerHTML = '';
+        
+        // Set chat session ID for the new chat
+        window.currentChatId = generateChatId();
+    }
+}
+
+// Display a temporary message for new chat
+function displayNewChatMessage() {
+    const chatContainer = document.querySelector('.chat-container');
+    if (chatContainer) {
+        const welcomeMessage = document.createElement('div');
+        welcomeMessage.className = 'bot-message';
+        welcomeMessage.innerHTML = 'How can I assist you with legal matters today?';
+        chatContainer.appendChild(welcomeMessage);
+        
+        // Apply animation to the welcome message
+        welcomeMessage.style.opacity = '0';
+        welcomeMessage.style.transform = 'translateY(10px)';
+        
+        setTimeout(() => {
+            welcomeMessage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            welcomeMessage.style.opacity = '1';
+            welcomeMessage.style.transform = 'translateY(0)';
+        }, 100);
+    }
+}
+
+// Save current chat to history
+function saveChatToHistory() {
+    const chatContainer = document.querySelector('.chat-container');
+    if (!chatContainer || !chatContainer.children.length) return; // Don't save empty chats
+    
+    // Initialize chat history if it doesn't exist
+    if (!localStorage.getItem('legalAdvisorChatHistory')) {
+        localStorage.setItem('legalAdvisorChatHistory', JSON.stringify([]));
+    }
+    
+    // Get existing chat history
+    let chatHistory = JSON.parse(localStorage.getItem('legalAdvisorChatHistory'));
+    
+    // If no current chat ID, generate one
+    if (!window.currentChatId) {
+        window.currentChatId = generateChatId();
+    }
+    
+    // Get all messages
+    const messages = Array.from(chatContainer.children);
+    
+    // Skip if no real messages
+    if (messages.length <= 1 && messages[0]?.innerHTML?.includes('How can I assist you')) {
+        return;
+    }
+    
+    // Create title from first user message or use default
+    let chatTitle = 'New Legal Conversation';
+    for (const message of messages) {
+        if (message.classList.contains('user-message')) {
+            chatTitle = message.innerText.substring(0, 30) + (message.innerText.length > 30 ? '...' : '');
+            break;
+        }
+    }
+    
+    // Create chat object
+    const chatObject = {
+        id: window.currentChatId,
+        title: chatTitle,
+        timestamp: new Date().toISOString(),
+        messages: Array.from(chatContainer.children).map(msg => {
+            return {
+                type: msg.classList.contains('user-message') ? 'user' : 'bot',
+                content: msg.innerHTML
+            };
+        })
+    };
+    
+    // Check if chat already exists in history
+    const existingChatIndex = chatHistory.findIndex(chat => chat.id === window.currentChatId);
+    
+    if (existingChatIndex >= 0) {
+        // Update existing chat
+        chatHistory[existingChatIndex] = chatObject;
+    } else {
+        // Add new chat to history
+        chatHistory.push(chatObject);
+    }
+    
+    // Save updated history
+    localStorage.setItem('legalAdvisorChatHistory', JSON.stringify(chatHistory));
+}
+
+// Generate a unique ID for the chat
+function generateChatId() {
+    return 'chat_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
+}
+
+// Initialize chat history in sidebar
+function initializeChatHistory() {
+    // Get sidebar element
+    const sidebar = document.querySelector('[data-testid="stSidebar"]');
+    if (!sidebar) return;
+    
+    // Check if history container already exists
+    if (document.querySelector('.chat-history-container')) return;
+    
+    // Create chat history container
+    const historyContainer = document.createElement('div');
+    historyContainer.className = 'chat-history-container';
+    historyContainer.innerHTML = '<div class="chat-history-title">Chat History</div>';
+    
+    // Get chat history from local storage
+    let chatHistory = [];
+    try {
+        chatHistory = JSON.parse(localStorage.getItem('legalAdvisorChatHistory')) || [];
+    } catch (e) {
+        console.error('Error loading chat history:', e);
+        chatHistory = [];
+    }
+    
+    // If no history, show message
+    if (chatHistory.length === 0) {
+        const emptyMessage = document.createElement('div');
+        emptyMessage.className = 'chat-history-empty';
+        emptyMessage.textContent = 'No previous chats found';
+        emptyMessage.style.color = 'var(--text-secondary)';
+        emptyMessage.style.textAlign = 'center';
+        emptyMessage.style.padding = '1rem 0';
+        historyContainer.appendChild(emptyMessage);
+    } else {
+        // Add chat history items (most recent first)
+        chatHistory.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+            .forEach(chat => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'chat-history-item';
+                historyItem.dataset.chatId = chat.id;
+                
+                // Add active class if this is the current chat
+                if (window.currentChatId === chat.id) {
+                    historyItem.classList.add('active');
+                }
+                
+                historyItem.innerHTML = `
+                    <div class="chat-history-item-title">${chat.title}</div>
+                    <div class="chat-history-item-actions">
+                        <button class="chat-history-delete" title="Delete chat">🗑️</button>
+                    </div>
+                `;
+                
+                // Add click event to load chat
+                historyItem.addEventListener('click', (e) => {
+                    // Don't trigger if clicked on delete button
+                    if (e.target.classList.contains('chat-history-delete')) return;
+                    
+                    // Save current chat before loading a new one
+                    saveChatToHistory();
+                    
+                    // Load selected chat
+                    loadChatFromHistory(chat.id);
+                    
+                    // Update active state in sidebar
+                    document.querySelectorAll('.chat-history-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    historyItem.classList.add('active');
+                });
+                
+                // Add delete button functionality
+                const deleteButton = historyItem.querySelector('.chat-history-delete');
+                deleteButton.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent loading the chat
+                    deleteChat(chat.id);
+                    historyItem.remove();
+                    
+                    // If no more chats, show empty message
+                    if (document.querySelectorAll('.chat-history-item').length === 0) {
+                        const emptyMessage = document.createElement('div');
+                        emptyMessage.className = 'chat-history-empty';
+                        emptyMessage.textContent = 'No previous chats found';
+                        emptyMessage.style.color = 'var(--text-secondary)';
+                        emptyMessage.style.textAlign = 'center';
+                        emptyMessage.style.padding = '1rem 0';
+                        historyContainer.appendChild(emptyMessage);
+                    }
+                });
+                
+                historyContainer.appendChild(historyItem);
+            });
+    }
+    
+    // Add to sidebar
+    sidebar.querySelector(':scope > div').appendChild(historyContainer);
+}
+
+// Load chat from history
+function loadChatFromHistory(chatId) {
+    let chatHistory = [];
+    try {
+        chatHistory = JSON.parse(localStorage.getItem('legalAdvisorChatHistory')) || [];
+    } catch (e) {
+        console.error('Error loading chat history:', e);
+        return;
+    }
+    
+    // Find the chat
+    const chat = chatHistory.find(chat => chat.id === chatId);
+    if (!chat) return;
+    
+    // Get chat container
+    const chatContainer = document.querySelector('.chat-container');
+    if (!chatContainer) return;
+    
+    // Clear current chat
+    chatContainer.innerHTML = '';
+    
+    // Set current chat ID
+    window.currentChatId = chatId;
+    
+    // Add messages back
+    chat.messages.forEach((msg, index) => {
+        const messageElement = document.createElement('div');
+        messageElement.className = msg.type === 'user' ? 'user-message' : 'bot-message';
+        messageElement.innerHTML = msg.content;
+        chatContainer.appendChild(messageElement);
+        
+        // Animate message appearance with delay
+        messageElement.style.opacity = '0';
+        messageElement.style.transform = 'translateY(10px)';
+        
+        setTimeout(() => {
+            messageElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            messageElement.style.opacity = '1';
+            messageElement.style.transform = 'translateY(0)';
+        }, 50 * index);
+    });
+    
+    // Scroll to bottom
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+// Delete chat from history
+function deleteChat(chatId) {
+    let chatHistory = [];
+    try {
+        chatHistory = JSON.parse(localStorage.getItem('legalAdvisorChatHistory')) || [];
+    } catch (e) {
+        console.error('Error loading chat history:', e);
+        return;
+    }
+    
+    // Remove the chat
+    chatHistory = chatHistory.filter(chat => chat.id !== chatId);
+    
+    // Save updated history
+    localStorage.setItem('legalAdvisorChatHistory', JSON.stringify(chatHistory));
+    
+    // If current chat was deleted, start a new one
+    if (window.currentChatId === chatId) {
+        clearChatContainer();
+        displayNewChatMessage();
+        window.currentChatId = generateChatId();
+    }
+}
+
+// Update chat history sidebar
+function updateChatHistorySidebar() {
+    // Remove existing chat history container
+    const existingContainer = document.querySelector('.chat-history-container');
+    if (existingContainer) {
+        existingContainer.remove();
+    }
+    
+    // Re-initialize chat history
+    initializeChatHistory();
+}
+
+// Initialize chat ID for the current session if not exists
+if (!window.currentChatId) {
+    window.currentChatId = generateChatId();
+}
+
+// Run on initial load
+document.addEventListener('DOMContentLoaded', initializeAnimations);
+
+// Also run when Streamlit re-renders (detects the main Streamlit app container mutation)
+const observer = new MutationObserver(mutations => {
+    mutations.forEach(mutation => {
+        if (mutation.addedNodes.length) {
+            initializeAnimations();
+        }
+    });
+});
+
+// Start observing changes to the body
+try {
+    observer.observe(document.body, { childList: true, subtree: true });
+} catch (e) {
+    console.error('Failed to initialize observer:', e);
+}
+
+// Reinitialize on Streamlit script changes
+window.addEventListener('streamlit:render', initializeAnimations);
+
+// Automatically save chat when user leaves the page
+window.addEventListener('beforeunload', () => {
+    saveChatToHistory();
+}); 

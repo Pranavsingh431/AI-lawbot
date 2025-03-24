@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  legal-advisor-ai:
+    build: .
+    container_name: legal-advisor-ai
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./user_data:/app/user_data
+      - ./saved_chats:/app/saved_chats
+      - ./uploads:/app/uploads
+      - ./logs:/app/logs
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s 

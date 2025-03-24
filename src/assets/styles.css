@@ -1,0 +1,1806 @@
+/* 
+ * Legal Advisor AI - Production Version
+ * Professional stylesheet for enterprise application
+ */
+
+/* Global Styles - Refined for production */
+* {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* CSS Variables - Enhanced for enterprise application */
+:root {
+    /* Light mode variables - refined */
+    --background-color: #FFFFFF;
+    --container-bg: #F8F9FA;
+    --text-color: #333333;
+    --text-secondary: #5A5A5A;
+    --border-color: #E0E0E0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --accent-color: #2066AB;
+    --accent-dark: #17508A;
+    --accent-light: #4C90CD;
+    --user-msg-bg: #E5EFF8;
+    --user-msg-border: #C0D4E8;
+    --bot-msg-bg: #F8F9FA;
+    --bot-msg-border: #E0E0E0;
+    --error-color: #D03535;
+    --success-color: #389738;
+    --warning-color: #F2A93B;
+    --info-color: #2E86DE;
+    --sidebar-bg: #F5F7F9;
+    --legal-term-color: #2066AB;
+    --button-hover: #4C90CD;
+    --input-focus: rgba(32, 102, 171, 0.2);
+    --footer-color: #6C757D;
+    --footer-border: #E0E0E0;
+    --ribbon-gradient: linear-gradient(135deg, #2066AB, #17508A);
+    --ribbon-bottom: #17508A;
+    --blinker-color: #2066AB;
+    --transition-speed: 0.2s;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --padding-sm: 0.5rem;
+    --padding-md: 1rem;
+    --padding-lg: 1.5rem;
+    --accent-light-rgb: 76, 144, 205;
+}
+
+/* Dark mode variables - refined for premium feel */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #111111;
+        --container-bg: #1C1C1C;
+        --text-color: #F0F0F0;
+        --text-secondary: #B0B0B0;
+        --border-color: #333333;
+        --shadow-color: rgba(0, 0, 0, 0.25);
+        --accent-color: #3C8BD9;
+        --accent-dark: #2A6CB0;
+        --accent-light: #4EA0FF;
+        --user-msg-bg: #203546;
+        --user-msg-border: #2A4156;
+        --bot-msg-bg: #262626;
+        --bot-msg-border: #3A3A3A;
+        --error-color: #E84545;
+        --success-color: #4CAF50;
+        --warning-color: #FF9800;
+        --info-color: #2196F3;
+        --sidebar-bg: #171717;
+        --legal-term-color: #5BA3F0;
+        --button-hover: #3972B2;
+        --input-focus: rgba(60, 139, 217, 0.25);
+        --footer-color: #B0B0B0;
+        --footer-border: #333333;
+        --ribbon-gradient: linear-gradient(135deg, #2A6CB0, #194978);
+        --ribbon-bottom: #194978;
+        --blinker-color: #3C8BD9;
+        --accent-light-rgb: 78, 160, 255;
+    }
+}
+
+/* Force dark mode when class is added - refined */
+body.dark-mode-forced {
+    --background-color: #111111;
+    --container-bg: #1C1C1C;
+    --text-color: #F0F0F0;
+    --text-secondary: #B0B0B0;
+    --border-color: #333333;
+    --shadow-color: rgba(0, 0, 0, 0.25);
+    --accent-color: #3C8BD9;
+    --accent-dark: #2A6CB0;
+    --accent-light: #4EA0FF;
+    --user-msg-bg: #203546;
+    --user-msg-border: #2A4156;
+    --bot-msg-bg: #262626;
+    --bot-msg-border: #3A3A3A;
+    --error-color: #E84545;
+    --success-color: #4CAF50;
+    --warning-color: #FF9800;
+    --info-color: #2196F3;
+    --sidebar-bg: #171717;
+    --legal-term-color: #5BA3F0;
+    --button-hover: #3972B2;
+    --input-focus: rgba(60, 139, 217, 0.25);
+    --footer-color: #B0B0B0;
+    --footer-border: #333333;
+    --ribbon-gradient: linear-gradient(135deg, #2A6CB0, #194978);
+    --ribbon-bottom: #194978;
+    --blinker-color: #3C8BD9;
+    --accent-light-rgb: 78, 160, 255;
+}
+
+/* Force light mode when class is added - refined */
+body.light-mode-forced {
+    --background-color: #FFFFFF;
+    --container-bg: #F8F9FA;
+    --text-color: #333333;
+    --text-secondary: #5A5A5A;
+    --border-color: #E0E0E0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --accent-color: #2066AB;
+    --accent-dark: #17508A;
+    --accent-light: #4C90CD;
+    --user-msg-bg: #E5EFF8;
+    --user-msg-border: #C0D4E8;
+    --bot-msg-bg: #F8F9FA;
+    --bot-msg-border: #E0E0E0;
+    --error-color: #D03535;
+    --success-color: #389738;
+    --warning-color: #F2A93B;
+    --info-color: #2E86DE;
+    --sidebar-bg: #F5F7F9;
+    --legal-term-color: #2066AB;
+    --button-hover: #4C90CD;
+    --input-focus: rgba(32, 102, 171, 0.2);
+    --footer-color: #6C757D;
+    --footer-border: #E0E0E0;
+    --ribbon-gradient: linear-gradient(135deg, #2066AB, #17508A);
+    --ribbon-bottom: #17508A;
+    --blinker-color: #2066AB;
+    --accent-light-rgb: 76, 144, 205;
+}
+
+/* Base styling - respect system preferences by default */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+}
+
+/* Enhanced production-ready chat input with original padding */
+[data-testid="stChatInput"] {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 auto !important;
+    max-width: 800px !important;
+    padding: 1rem !important;
+    background-color: var(--background-color) !important;
+    border-top: 1px solid var(--border-color) !important;
+    border-radius: 0 !important;
+    z-index: 100 !important;
+    box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.15) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+}
+
+[data-testid="stChatInput"] > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    position: relative !important;
+}
+
+[data-testid="stChatInput"] input {
+    width: 100% !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 0.75rem 1rem !important;
+    background-color: var(--container-bg) !important;
+    color: var(--text-color) !important;
+    font-size: 0.95rem !important;
+    transition: all var(--transition-speed) ease !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-testid="stChatInput"] input:focus {
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 0 0 2px var(--input-focus) !important;
+    outline: none !important;
+}
+
+/* Light mode adjustments */
+body.light-mode-forced [data-testid="stChatInput"] {
+    background-color: var(--background-color) !important;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.07) !important;
+}
+
+/* Dark mode adjustments */
+body.dark-mode-forced [data-testid="stChatInput"] {
+    background-color: var(--background-color) !important;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Ensure Streamlit elements use our dark theme */
+.stApp {
+    background-color: var(--background-color) !important;
+}
+
+/* Law-themed animations */
+@keyframes gavel {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-20deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(20deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes scales {
+    0% { transform: translateY(0px) rotate(0deg); }
+    25% { transform: translateY(-3px) rotate(1deg); }
+    50% { transform: translateY(0px) rotate(0deg); }
+    75% { transform: translateY(3px) rotate(-1deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes paragraph {
+    0% { transform: scaleX(0); opacity: 0; }
+    100% { transform: scaleX(1); opacity: 1; }
+}
+
+@keyframes lawBook {
+    0% { transform: translateX(-10px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes verdict {
+    0% { box-shadow: 0 0 0 rgba(75, 145, 241, 0); }
+    50% { box-shadow: 0 0 20px rgba(75, 145, 241, 0.5); }
+    100% { box-shadow: 0 0 0 rgba(75, 145, 241, 0); }
+}
+
+/* Enhanced ribbon with subtle legal scales animation */
+.legal-ribbon {
+    background: linear-gradient(135deg, #050505, #121212);
+    color: var(--text-color);
+    padding: 0.7rem 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+}
+
+.scales-icon {
+    height: 22px;
+    margin-right: 10px;
+    animation: scales 4s ease-in-out infinite;
+}
+
+/* Enhanced premium sidebar */
+[data-testid="stSidebar"] {
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    padding-top: 0 !important;
+    position: relative;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+}
+
+[data-testid="stSidebar"]::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+        transparent, 
+        rgba(var(--accent-light-rgb), 0.3), 
+        transparent);
+    animation: flowingBorder 12s infinite linear;
+}
+
+[data-testid="stSidebar"] > div {
+    padding: 0.75rem 1rem !important;
+}
+
+/* Enhanced sidebar elements */
+.sidebar h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 1.25rem 0 0.75rem 0;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: relative;
+    padding-left: 0.75rem;
+    line-height: 1.4;
+}
+
+.sidebar h3::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 70%;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+}
+
+/* Professional sidebar buttons */
+.sidebar [data-testid="stButton"] button {
+    width: 100%;
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+    font-weight: normal;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.sidebar [data-testid="stButton"] button:hover {
+    background-color: rgba(var(--accent-light-rgb), 0.1);
+    border-color: var(--accent-color);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar [data-testid="stButton"] button:active {
+    transform: translateY(0);
+}
+
+/* Example buttons with premium styling */
+.sidebar [data-testid="stButton"] button[key^="example_"] {
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    background-color: transparent;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-speed) ease;
+    margin-bottom: 0.35rem;
+    color: var(--text-color);
+    border-left: 2px solid transparent;
+    font-size: 0.85rem;
+}
+
+.sidebar [data-testid="stButton"] button[key^="example_"]:hover {
+    background-color: rgba(var(--accent-light-rgb), 0.08);
+    border-left: 2px solid var(--accent-color);
+    padding-left: 1rem;
+}
+
+/* Chat messages with premium enterprise styling */
+.user-message, .bot-message {
+    padding: 1.1rem 1.5rem;
+    margin: 0.4rem 0;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    line-height: 1.6;
+    font-size: 1rem;
+    transition: background-color var(--transition-speed) ease;
+}
+
+.user-message {
+    background-color: var(--user-msg-bg);
+    border-bottom: 1px solid var(--user-msg-border);
+}
+
+.bot-message {
+    background-color: var(--bot-msg-bg);
+    border-bottom: 1px solid var(--bot-msg-border);
+}
+
+/* Enhance bot message styling with subtle indicator */
+.bot-message::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background-color: var(--accent-color);
+    opacity: 0.6;
+    margin-bottom: 0.3rem;
+    font-size: 0.75rem;
+}
+
+/* Make links within bot messages more professional */
+.bot-message a {
+    color: var(--accent-color);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all var(--transition-speed) ease;
+    font-weight: 500;
+}
+
+.bot-message a:hover {
+    border-bottom-color: var(--accent-color);
+    color: var(--accent-light);
+}
+
+/* Enhanced paragraph animation in bot messages - original spacing */
+.bot-message p {
+    animation: fadeInUp 0.5s ease-out;
+    animation-fill-mode: both;
+    margin-bottom: 1rem;
+}
+
+.bot-message p:last-child {
+    margin-bottom: 0;
+}
+
+.bot-message p:nth-child(2) { animation-delay: 0.05s; }
+.bot-message p:nth-child(3) { animation-delay: 0.1s; }
+.bot-message p:nth-child(4) { animation-delay: 0.15s; }
+.bot-message p:nth-child(5) { animation-delay: 0.2s; }
+
+/* Premium code block style with original spacing */
+.bot-message pre {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 1.25rem 0;
+    border-left: 3px solid var(--accent-color);
+    animation: lawBook 0.5s ease-out;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Professional enterprise chat container */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 180px);
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    max-height: calc(100vh - 160px);
+    min-height: auto;
+    margin-bottom: 75px;
+    position: relative;
+    scroll-behavior: smooth;
+}
+
+/* Add subtle background styling to alternate messages for better readability */
+.user-message:nth-child(odd) {
+    background-color: rgba(var(--accent-light-rgb), 0.03);
+}
+
+/* Citation styling for legal references */
+.citation {
+    border-left: 3px solid var(--accent-color);
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+    background-color: rgba(var(--accent-light-rgb), 0.05);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    font-size: 0.95rem;
+    position: relative;
+}
+
+.citation:before {
+    content: '"';
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    opacity: 0.3;
+    position: absolute;
+    top: 0.5rem;
+    left: 0.75rem;
+}
+
+/* Professional lists styling */
+.bot-message ul, .bot-message ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+.bot-message ul li, .bot-message ol li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.bot-message ul li:last-child, .bot-message ol li:last-child {
+    margin-bottom: 0;
+}
+
+/* Legal term styling - enhanced for professional appearance */
+.legal-term {
+    color: var(--legal-term-color);
+    font-weight: 500;
+    text-decoration: none;
+    position: relative;
+    cursor: help;
+    border-bottom: 1px dotted var(--legal-term-color);
+    transition: all var(--transition-speed) ease;
+}
+
+.legal-term:hover {
+    color: var(--accent-light);
+    border-bottom-style: solid;
+}
+
+/* Loading indicators - more professional animation */
+.loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem;
+    gap: 6px;
+    position: relative;
+}
+
+.loading-dot {
+    background-color: var(--accent-color);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin: 0 2px;
+    display: inline-block;
+    animation: loadingPulse 1.5s infinite ease-in-out both;
+    box-shadow: 0 0 5px rgba(75, 145, 241, 0.5);
+}
+
+.loading-dot:nth-child(1) { animation-delay: -0.32s; }
+.loading-dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes loadingPulse {
+    0%, 80%, 100% { transform: scale(0); opacity: 0.2; }
+    40% { transform: scale(1); opacity: 1; }
+}
+
+/* Add scale-of-justice animation to loading indicator */
+.loading-indicator::before,
+.loading-indicator::after {
+    content: '';
+    position: absolute;
+    top: -15px;
+    width: 40px;
+    height: 2px;
+    background-color: var(--accent-color);
+    opacity: 0.4;
+    animation: scales 3s infinite ease-in-out;
+}
+
+.loading-indicator::before {
+    left: calc(50% - 50px);
+    transform-origin: right;
+}
+
+.loading-indicator::after {
+    right: calc(50% - 50px);
+    transform-origin: left;
+}
+
+/* Enhanced button effects */
+.sidebar [data-testid="stButton"] button {
+    width: 100%;
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+    font-weight: normal;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar [data-testid="stButton"] button:hover {
+    background-color: rgba(75, 145, 241, 0.1);
+    border-color: var(--accent-color);
+}
+
+.sidebar [data-testid="stButton"] button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(75, 145, 241, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.sidebar [data-testid="stButton"] button:hover::after {
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(50, 50);
+        opacity: 0;
+    }
+}
+
+/* Enhance example buttons to look more interactive */
+.sidebar [data-testid="stButton"] button[key^="example_"] {
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border: none;
+    background-color: transparent;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    margin-bottom: 0.3rem;
+    color: var(--text-color);
+    border-left: 2px solid transparent;
+}
+
+.sidebar [data-testid="stButton"] button[key^="example_"]:hover {
+    background-color: rgba(75, 145, 241, 0.1);
+    border-left: 2px solid var(--accent-color);
+    padding-left: 1rem;
+}
+
+/* Add subtle glow to legal terms */
+.legal-term {
+    color: var(--legal-term-color);
+    font-weight: 500;
+    border-bottom: none;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+    padding: 0 2px;
+}
+
+.legal-term:hover {
+    color: white;
+    text-shadow: 0 0 8px rgba(75, 145, 241, 0.8);
+}
+
+/* Enhanced tooltip animation */
+.tooltip .tooltip-text {
+    visibility: hidden;
+    width: 240px;
+    background-color: var(--container-bg);
+    color: var(--text-color);
+    text-align: left;
+    border-radius: 6px;
+    padding: 1rem;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -120px;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--border-color);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    transform: translateY(10px);
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Add gavel animation to the dark mode toggle */
+#darkModeToggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    font-size: 0.8rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+    background-color: #121212;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#darkModeToggle:hover {
+    background-color: rgba(75, 145, 241, 0.1);
+    border-color: var(--accent-color);
+    animation: gavel 0.5s ease-in-out;
+}
+
+/* Professional file uploader */
+[data-testid="stFileUploader"] {
+    border: 1px solid var(--border-color) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 0.5rem !important;
+    transition: all 0.3s ease !important;
+    background-color: rgba(var(--accent-light-rgb), 0.02) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03) !important;
+    margin-bottom: 0.5rem !important;
+}
+
+[data-testid="stFileUploader"]:hover {
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05) !important;
+    background-color: rgba(var(--accent-light-rgb), 0.05) !important;
+}
+
+[data-testid="stFileUploader"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top right, rgba(var(--accent-light-rgb), 0.1), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 0;
+    pointer-events: none;
+}
+
+[data-testid="stFileUploader"]:hover::before {
+    opacity: 1;
+}
+
+[data-testid="stFileUploader"] label {
+    font-weight: 500 !important;
+    font-size: 0.95rem !important;
+    margin-bottom: 0.75rem !important;
+    display: block !important;
+    color: var(--text-color) !important;
+}
+
+[data-testid="stFileUploader"] button {
+    background-color: var(--accent-color) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: var(--radius-md) !important;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-testid="stFileUploader"] button:hover {
+    background-color: var(--accent-dark) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+    transform: translateY(-1px) !important;
+}
+
+[data-testid="stFileUploader"] button:active {
+    transform: translateY(0) !important;
+}
+
+[data-testid="stFileUploader"] p {
+    font-size: 0.85rem !important;
+    color: var(--text-secondary) !important;
+    margin-top: 0.5rem !important;
+}
+
+/* Enhanced loading indicators */
+.loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+    gap: 6px;
+    position: relative;
+}
+
+.loading-dot {
+    background-color: var(--accent-color);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin: 0 2px;
+    display: inline-block;
+    animation: loadingPulse 1.5s infinite ease-in-out both;
+    box-shadow: 0 0 8px rgba(var(--accent-light-rgb), 0.5);
+}
+
+.loading-dot:nth-child(1) { animation-delay: -0.32s; }
+.loading-dot:nth-child(2) { animation-delay: -0.16s; }
+
+/* Add scale-of-justice animation to loading indicator */
+.loading-indicator::before,
+.loading-indicator::after {
+    content: '';
+    position: absolute;
+    top: -15px;
+    width: 40px;
+    height: 2px;
+    background-color: var(--accent-color);
+    opacity: 0.4;
+    animation: scales 3s infinite ease-in-out;
+    box-shadow: 0 0 5px rgba(var(--accent-light-rgb), 0.3);
+}
+
+.loading-indicator::before {
+    left: calc(50% - 50px);
+    transform-origin: right;
+}
+
+.loading-indicator::after {
+    right: calc(50% - 50px);
+    transform-origin: left;
+}
+
+/* Enhanced status messages */
+.status-msg {
+    font-size: 0.85rem;
+    padding: 0.7rem 1rem;
+    margin: 0.7rem 0;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--container-bg);
+    border-left: 3px solid transparent;
+    animation: fadeInUp 0.5s ease-out;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.status-msg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(var(--accent-light-rgb), 0.1), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.status-msg:hover::before {
+    opacity: 0.5;
+}
+
+.success-msg {
+    border-left-color: var(--success-color);
+}
+
+.info-msg {
+    border-left-color: var(--info-color);
+}
+
+.warning-msg {
+    border-left-color: var(--warning-color);
+}
+
+.error-msg {
+    border-left-color: var(--error-color);
+}
+
+.success-msg::after,
+.info-msg::after,
+.warning-msg::after,
+.error-msg::after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: glowPulse 3s infinite ease-in-out;
+}
+
+.success-msg::after { background-color: var(--success-color); }
+.info-msg::after { background-color: var(--info-color); }
+.warning-msg::after { background-color: var(--warning-color); }
+.error-msg::after { background-color: var(--error-color); }
+
+/* Main layout - Professional style */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-size: 15px !important;
+    line-height: 1.5;
+}
+
+/* Hide unnecessary Streamlit components */
+header[data-testid="stHeader"],
+footer,
+.stDeployButton,
+[data-testid="stToolbar"],
+.stDecoration {
+    display: none !important;
+}
+
+/* Streamlit container styles - Gemini-inspired compact layout */
+.main .block-container {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Clean the header */
+.main-header {
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 10px 0;
+    display: none; /* Hide initially for cleaner look */
+}
+
+.main-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.main-header p {
+    display: none; /* Hide for cleaner look */
+}
+
+/* Minimal logo */
+.scales-img {
+    height: 30px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* Clean minimal sidebar - Professional style */
+[data-testid="stSidebar"] {
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    padding-top: 0 !important;
+}
+
+[data-testid="stSidebar"] > div {
+    padding-top: 0 !important;
+}
+
+/* Reduce space after sidebar separator */
+.sidebar-separator {
+    margin: 0.5rem 0 !important;
+    height: 1px !important;
+}
+
+/* Simple clean sidebar title */
+.sidebar h3 {
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin: 1rem 0 0.5rem 0;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Simple clean ribbon for sidebar header */
+.legal-ribbon {
+    background: var(--sidebar-bg);
+    color: var(--text-color);
+    padding: 0.5rem 0.5rem !important;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+}
+
+.legal-ribbon-content {
+    padding: 0.25rem 0 !important;
+    display: flex;
+    align-items: center;
+}
+
+.legal-ribbon-content h1 {
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+.scales-icon {
+    width: 24px !important;
+    height: 24px !important;
+    margin-right: 0.5rem !important;
+}
+
+/* Clean buttons */
+.sidebar [data-testid="stButton"] button {
+    width: 100%;
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    font-weight: normal;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.sidebar [data-testid="stButton"] button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode-forced .sidebar [data-testid="stButton"] button:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Chat container styled like professional interface */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 180px);
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    max-height: calc(100vh - 160px);
+    min-height: auto;
+    margin-bottom: 75px;
+    position: relative;
+    scroll-behavior: smooth;
+}
+
+/* Chat messages with professional styling */
+.user-message, .bot-message {
+    padding: 1.1rem 1.5rem;
+    margin: 0.4rem 0;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    line-height: 1.6;
+    font-size: 1rem;
+    transition: background-color var(--transition-speed) ease;
+}
+
+.user-message {
+    background-color: var(--user-msg-bg);
+    border-bottom: 1px solid var(--user-msg-border);
+}
+
+.bot-message {
+    background-color: var(--bot-msg-bg);
+    border-bottom: 1px solid var(--bot-msg-border);
+}
+
+/* Remove message labels and styling */
+.user-message::after, .bot-message::after {
+    display: none;
+}
+
+/* Loading indicators - professional dots */
+.loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem;
+    gap: 4px;
+}
+
+.loading-dot {
+    background-color: var(--accent-color);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin: 0 2px;
+    display: inline-block;
+    animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.loading-dot:nth-child(1) { animation-delay: -0.32s; }
+.loading-dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes bounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+}
+
+/* Professional status messages */
+.status-msg {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.8rem;
+    margin: 0.5rem 0;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(18, 18, 18, 0.7);
+    border-left: 3px solid transparent;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.success-msg {
+    border-left-color: #4CAF50;
+}
+
+.info-msg {
+    border-left-color: #2196F3;
+}
+
+.warning-msg {
+    border-left-color: #FF9800;
+}
+
+.error-msg {
+    border-left-color: #F44336;
+}
+
+.success-msg::before,
+.info-msg::before,
+.warning-msg::before,
+.error-msg::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: glowPulse 3s infinite ease-in-out;
+}
+
+.success-msg::before { background-color: #4CAF50; }
+.info-msg::before { background-color: #2196F3; }
+.warning-msg::before { background-color: #FF9800; }
+.error-msg::before { background-color: #F44336; }
+
+/* Scroll indicator button styling */
+.scroll-indicator {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background-color: var(--accent-color);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 90; /* Lower than new-chat-container */
+}
+
+.scroll-indicator:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* New Chat container with arrow and button properly aligned */
+.new-chat-container {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Clean minimal gap between arrow and button */
+    z-index: 1000; /* Higher than scroll indicator */
+    height: 40px; /* Fixed height to ensure vertical centering */
+    padding: 0; /* Remove any unnecessary padding */
+    background: transparent;
+}
+
+/* Arrow icon styling */
+.new-chat-container .arrow-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+    width: 24px; /* Fixed width for consistency */
+    height: 24px; /* Fixed height for vertical alignment */
+    margin: 0; /* Remove any margin that might affect alignment */
+    opacity: 0.8; /* Make it slightly more subtle */
+}
+
+.new-chat-container:hover .arrow-icon {
+    transform: translateX(3px);
+    color: var(--accent-color);
+    opacity: 1;
+}
+
+/* Professional New Chat button styling with proper padding */
+.new-chat-button {
+    position: relative;
+    background-color: var(--container-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 0.45rem 0.8rem; /* Consistent padding */
+    margin: 0; /* Remove any margin that might affect alignment */
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 38px; /* Fixed height for vertical alignment */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Button icon and text alignment */
+.new-chat-button i {
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1em;
+    height: 1em;
+}
+
+.new-chat-button span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    position: relative;
+    top: 0.5px; /* Fine-tune vertical text alignment */
+}
+
+.new-chat-button:hover {
+    background-color: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.new-chat-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Media query adjustments for mobile */
+@media (max-width: 768px) {
+    .new-chat-container {
+        top: 8px;
+        left: 8px;
+        gap: 8px; /* Slightly smaller gap on mobile */
+        height: 36px; /* Smaller height on mobile */
+    }
+    
+    .arrow-icon {
+        width: 20px; /* Smaller width on mobile */
+        height: 20px; /* Smaller height on mobile */
+        font-size: 0.9rem;
+    }
+    
+    .new-chat-button {
+        padding: 0.35rem 0.7rem;
+        font-size: 0.8rem;
+        height: 34px; /* Smaller height on mobile */
+    }
+}
+
+/* Enhanced Chat History Container */
+.chat-history-container {
+    margin-top: 1.5rem;
+    background-color: transparent;
+    border: none;
+    padding: 0.75rem 0.5rem;
+}
+
+.chat-history-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chat-history-title span {
+    padding-left: 0.5rem;
+    position: relative;
+}
+
+.chat-history-title span::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 70%;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+}
+
+.chat-history-item {
+    padding: 0.7rem 0.8rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+    font-size: 0.85rem;
+    background-color: rgba(var(--accent-light-rgb), 0.02);
+    border-left: 2px solid transparent;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.chat-history-item:hover {
+    background-color: rgba(var(--accent-light-rgb), 0.08);
+    transform: translateX(2px);
+    border-left-color: var(--accent-color);
+}
+
+.chat-history-item.active {
+    background-color: rgba(var(--accent-light-rgb), 0.12);
+    border-left: 2px solid var(--accent-color);
+    font-weight: 500;
+}
+
+.chat-history-item-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+    padding-right: 0.5rem;
+    position: relative;
+}
+
+.chat-history-item-time {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+    opacity: 0.8;
+}
+
+.chat-history-item-actions {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    display: flex;
+    gap: 0.25rem;
+}
+
+.chat-history-item:hover .chat-history-item-actions {
+    opacity: 1;
+}
+
+.chat-history-delete,
+.chat-history-edit {
+    background: none;
+    border: none;
+    padding: 0.25rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: all 0.2s ease;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    border-radius: 3px;
+}
+
+.chat-history-delete:hover,
+.chat-history-edit:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: var(--accent-color);
+}
+
+.chat-history-delete:hover {
+    color: var(--error-color);
+}
+
+/* Empty state styling */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem !important;
+    margin: 0.5rem 0 !important;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.empty-state svg,
+.empty-state i {
+    font-size: 1.5rem !important;
+    margin-bottom: 0.25rem !important;
+    opacity: 0.5;
+    color: var(--accent-color);
+}
+
+.empty-state h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.empty-state p {
+    max-width: 500px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    position: fixed;
+    top: 10px !important;
+    right: 10px !important;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--container-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+.theme-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow-color);
+    background-color: var(--accent-light);
+}
+
+.theme-toggle:active {
+    transform: translateY(0);
+}
+
+/* Adjust typing blinker for better visibility in light mode */
+@media (prefers-color-scheme: light), body.light-mode-forced {
+    .typing-blinker {
+        background-color: var(--accent-dark);
+        height: 18px;
+    }
+}
+
+/* Professional typing effect */
+.typing-blinker {
+    display: inline-block;
+    width: 2px;
+    height: 18px;
+    background-color: var(--accent-color);
+    margin-left: 2px;
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+    position: relative;
+    opacity: 0.8;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* Professional animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scales {
+    0% { transform: translateY(0) rotate(0); }
+    25% { transform: translateY(-3px) rotate(0.5deg); }
+    50% { transform: translateY(0) rotate(0); }
+    75% { transform: translateY(3px) rotate(-0.5deg); }
+    100% { transform: translateY(0) rotate(0); }
+}
+
+@keyframes lawBook {
+    0% { transform: translateX(-5px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes flowingBorder {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
+
+@keyframes glowPulse {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.3; }
+}
+
+@keyframes loadingPulse {
+    0%, 80%, 100% { transform: scale(0); opacity: 0.3; }
+    40% { transform: scale(1); opacity: 1; }
+}
+
+/* Focus styles for accessibility */
+a:focus, 
+button:focus, 
+input:focus, 
+textarea:focus, 
+[role="button"]:focus {
+    outline: 2px solid var(--accent-color) !important;
+    outline-offset: 2px !important;
+}
+
+/* Hide unnecessary Streamlit components */
+header[data-testid="stHeader"],
+footer,
+.stDeployButton,
+[data-testid="stToolbar"],
+.stDecoration {
+    display: none !important;
+}
+
+/* Streamlit container styles - Professional layout */
+.main .block-container {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0 !important;
+    max-width: 900px !important;
+}
+
+/* Make scrollbars more professional */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(var(--accent-light-rgb), 0.3);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--accent-light-rgb), 0.5);
+}
+
+/* Professional tooltip styling */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+    margin-bottom: 0.4rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.tooltip .tooltip-text {
+    visibility: hidden;
+    width: 280px;
+    background-color: var(--container-bg);
+    color: var(--text-color);
+    text-align: left;
+    border-radius: var(--radius-md);
+    padding: 1rem 1.25rem;
+    position: absolute;
+    z-index: 10;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -140px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    transform: translateY(10px);
+}
+
+.tooltip .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--border-color) transparent transparent transparent;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+    .bot-message, .user-message {
+        padding: 1rem;
+    }
+    
+    .welcome-banner-minimal {
+        padding: 1rem;
+        margin: 0.5rem auto 1.5rem;
+    }
+    
+    .new-chat-button {
+        top: 0.75rem;
+        left: 65px; /* Adjusted for mobile */
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
+    }
+    
+    .theme-toggle {
+        top: 0.75rem;
+        right: 0.75rem;
+        width: 35px;
+        height: 35px;
+    }
+    
+    [data-testid="stChatInput"] {
+        padding: 0.75rem !important;
+    }
+    
+    .chat-container {
+        margin-bottom: 60px;
+    }
+}
+
+/* Enhanced main container */
+.main-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0.5rem;
+    position: relative;
+}
+
+/* Add spacing after chat container for fixed input */
+.main-container::after,
+.chat-container::after {
+    content: '';
+    display: block;
+    height: 80px;
+}
+
+/* Show we're in production mode with subtle indicator */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, 
+        var(--accent-color), 
+        transparent,
+        var(--accent-color));
+    z-index: 2000;
+    opacity: 0.7;
+}
+
+/* Make the legal term of day more compact */
+.legal-term-of-day p {
+    margin-top: 0.5rem;
+    line-height: 1.5;
+}
+
+/* More compact welcome banner */
+.welcome-banner-minimal {
+    text-align: center;
+    padding: 2rem;
+    margin: 1rem auto 2rem;
+    max-width: 800px;
+    border-radius: var(--radius-lg);
+    background-color: rgba(var(--accent-light-rgb), 0.04);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.welcome-banner-minimal h1 {
+    font-size: 2.4rem !important;
+    margin-bottom: 0.75rem !important;
+    font-weight: 600;
+    color: var(--accent-color);
+    line-height: 1.3;
+}
+
+.welcome-banner-minimal p {
+    font-size: 1.2rem !important;
+    margin-bottom: 1.5rem !important;
+    color: var(--text-secondary);
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+}
+
+/* Media query adjustments for mobile */
+@media (max-width: 768px) {
+    .new-chat-button {
+        top: 0.75rem;
+        left: 65px; /* Adjusted for mobile */
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
+    }
+    
+    .welcome-banner-minimal h1 {
+        font-size: 1.8rem !important;
+    }
+    
+    .welcome-banner-minimal p {
+        font-size: 1rem !important;
+    }
+}
+
+/* Remove the remaining compact rules that were added */
+.bot-message code {
+    padding: 0.25rem 0.4rem;
+    font-size: 0.9rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+/* Reduce all headings sizes */
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Reduce status message padding */
+.status-msg {
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Make button heights smaller */
+button, [type="button"] {
+    min-height: 2.25rem;
+}
+
+/* Remove message labels and styling */
+.bot-message::before {
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+}
+
+/* Make chat history more compact */
+.chat-history-container {
+    max-height: 40vh;
+    padding: 0.75rem 0.5rem;
+}
+
+.chat-history-item {
+    padding: 0.7rem 0.8rem;
+    margin-bottom: 0.5rem;
+} 
